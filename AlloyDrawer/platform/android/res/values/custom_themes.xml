@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<style name="AppTheme" parent="@style/Theme.AppCompat">
+    <item name="colorPrimary">#1A1A1A</item>
+    <item name="colorPrimaryDark">#151515</item>
+    <item name="colorAccent">#FF6932</item>
+    <item name="android:textColorPrimary">#FF6932</item>
+    <item name="android:colorButtonNormal">#FF6932</item>
+    <item name="android:colorControlHighlight">#FF622A</item>
+    <item name="colorControlNormal">#424242</item>
+    <item name="colorSwitchThumbNormal">#424242</item>
+</style>
+</resources>

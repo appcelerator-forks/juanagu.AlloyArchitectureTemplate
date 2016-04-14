@@ -1,0 +1,35 @@
+<Alloy>
+    <Widget id="drawer" src="nl.fokkezb.drawer">
+
+        <Window module="xp.ui" role="leftWindow" class="size">
+           <Require id="menu" src="partial_menu"/>
+        </Window>
+
+        <NavigationWindow platform="ios" role="centerWindow">
+            <Window>
+                <LeftNavButton>
+                    <Button onClick="toggle">Left</Button>
+                </LeftNavButton>
+              
+                <RightNavButton>
+                    <Button onClick="toggle">Right</Button>
+                </RightNavButton>
+            </Window>
+        </NavigationWindow>
+        <View platform="android" role="centerWindow" layout="vertical">
+            <Button title="Test button"/>
+               <TextField hintText="Hint test" />
+               <Switch> </Switch>
+               <Switch style="Titanium.UI.Android.SWITCH_STYLE_CHECKBOX" > </Switch>
+               <TextArea hintText="Text area"></TextArea>
+                 <Button title="Test secondary" class="button_secondary"/>
+                  <Button title="Test disabled" class="button_disabled"/>
+                    <Button title="Transparent" class="button_transparent"/>
+        </View>
+
+        <Window module="xp.ui" role="rightWindow">
+            <Label>I am right</Label>
+        </Window>
+
+    </Widget>
+</Alloy>
