@@ -45,7 +45,7 @@ var cleanup = function() {
  * apply listeners to controller
  */
 var applyListeners = function() {
-	$.window.addEventListener('some', onSome);
+	$.win.addEventListener('some', onSome);
 };
 
 /**
@@ -75,7 +75,7 @@ var onSome = function(e) {
  */
 var onOpen = function(e) {
 	_.defer(init);
-	$.view.onOpen(e);
+	//$.view.onOpen(e);
 
 };
 
@@ -84,7 +84,7 @@ var onOpen = function(e) {
  * @param {Object} e
  */
 var onClose = function(e) {
-	$.view.onClose(e);
+	//$.view.onClose(e);
 };
 
 /**
@@ -92,7 +92,7 @@ var onClose = function(e) {
  * @param {Object} e
  */
 var onAdd = function(e) {
-	$.view.onAdd(e);
+	//$.view.onAdd(e);
 };
 
 /** ------------------------

@@ -1,1 +1,1 @@
-Alloy.createController('master');
+Alloy.createController('master').getView().open();
