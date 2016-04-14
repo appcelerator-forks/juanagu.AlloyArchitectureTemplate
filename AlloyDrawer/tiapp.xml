@@ -11,7 +11,6 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>7f639ef6-6a08-41ae-9777-6cc43e1d1928</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
         <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
@@ -78,5 +77,4 @@
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
-    <property name="appc-app-id" type="string">56ffb4ed3f6b098d354c8aaa</property>
 </ti:app>
