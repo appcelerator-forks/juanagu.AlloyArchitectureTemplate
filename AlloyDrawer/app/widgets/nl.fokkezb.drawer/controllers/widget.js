@@ -13,7 +13,7 @@ $.module = require(mod);
 // convert children to args based on role
 if (args.children) {
 
-	_.each(args.children, function (child) {
+	_.each(args.children, function(child) {
 
 		// fix: https://jira.appcelerator.org/browse/TC-3583
 		if (!child) {
@@ -35,19 +35,13 @@ if (args.children) {
 var consts;
 
 if (mod === 'dk.napp.drawer') {
-	consts = [
-		'closeDrawerGestureMode',
-		'openDrawerGestureMode',
-		'centerHiddenInteractionMode',
-		'animationMode',
-		'statusBarStyle'
-	];
+	consts = ['closeDrawerGestureMode', 'openDrawerGestureMode', 'centerHiddenInteractionMode', 'animationMode', 'statusBarStyle'];
 } else {
 	consts = ['drawerLockMode'];
 }
 
 // convert strings to constants
-_.each(consts, function (arg) {
+_.each(consts, function(arg) {
 
 	if (args[arg] && typeof args[arg] === 'string') {
 		args[arg] = $.module[args[arg]];
@@ -109,12 +103,12 @@ if (mod === 'dk.napp.drawer') {
 }
 
 if (OS_ANDROID) {
-	$.window.addEventListener('open', function (e) {
+	$.window.addEventListener('open', function(e) {
 		var actionBar = (mod === 'dk.napp.drawer' ? this : e.source).getActivity().getActionBar();
 
 		if (actionBar) {
 			actionBar.setDisplayHomeAsUp(true);
-			actionBar.setOnHomeIconItemSelected(function () {
+			actionBar.setOnHomeIconItemSelected(function() {
 				if ($.isRightWindowOpen()) {
 					return $.closeRightWindow();
 				}
@@ -127,55 +121,19 @@ if (OS_ANDROID) {
 var props;
 
 if (mod === 'dk.napp.drawer') {
-	props = [
-		'centerWindow',
-		'leftWindow',
-		'rightWindow',
-		'closeDrawerGestureMode',
-		'openDrawerGestureMode',
-		'leftDrawerWidth',
-		'rightDrawerWidth',
-		'orientationModes',
-		'centerHiddenInteractionMode',
-		'animationMode',
-		'animationVelocity',
-		'showShadow',
-		'shadowWidth',
-		'shouldStretchDrawer',
-		'fading',
-		'parallaxAmount',
-		'statusBarStyle',
-		'hamburgerIcon',
-		'hamburgerIconColor',
-		'arrowAnimation'
-	];
+	props = ['centerWindow', 'leftWindow', 'rightWindow', 'closeDrawerGestureMode', 'openDrawerGestureMode', 'leftDrawerWidth', 'rightDrawerWidth', 'orientationModes', 'centerHiddenInteractionMode', 'animationMode', 'animationVelocity', 'showShadow', 'shadowWidth', 'shouldStretchDrawer', 'fading', 'parallaxAmount', 'statusBarStyle', 'hamburgerIcon', 'hamburgerIconColor', 'arrowAnimation'];
 } else {
-	props = [
-		'leftView',
-		'rightView',
-		'centerView',
-		'isLeftDrawerOpen',
-		'isLeftDrawerVisible',
-		'isRightDrawerOpen',
-		'isRightDrawerVisible',
-		'leftDrawerWidth',
-		'rightDrawerWidth',
-		'drawerIndicatorEnabled',
-		'drawerIndicatorImage',
-		'drawerLockMode',
-		'drawerArrowIcon',
-		'drawerArrowIconColor'
-	];
+	props = ['leftView', 'rightView', 'centerView', 'isLeftDrawerOpen', 'isLeftDrawerVisible', 'isRightDrawerOpen', 'isRightDrawerVisible', 'leftDrawerWidth', 'rightDrawerWidth', 'drawerIndicatorEnabled', 'drawerIndicatorImage', 'drawerLockMode', 'drawerArrowIcon', 'drawerArrowIconColor'];
 }
 
 // expose properties, setters and getters
-_.each(props, function (key) {
+_.each(props, function(key) {
 	var cc = key[0].toUpperCase() + key.substring(1);
 
-	var get = $['get' + cc] || ($['get' + cc] = function () {
+	var get = $['get' + cc] || ($['get' + cc] = function() {
 		return $.instance[key];
 	});
-	var set = $['set' + cc] || ($['set' + cc] = function (val) {
+	var set = $['set' + cc] || ($['set' + cc] = function(val) {
 
 		if (consts.indexOf(key) !== -1 && typeof val === 'string') {
 			val = $.module[val];
@@ -185,38 +143,38 @@ _.each(props, function (key) {
 	});
 
 	Object.defineProperty($, key, {
-		get: get,
-		set: set
+		get : get,
+		set : set
 	});
 });
 
 if (mod === 'dk.napp.drawer') {
 
-	$.closeLeftWindow = function () {
+	$.closeLeftWindow = function() {
 		if ($.instance.isLeftWindowOpen()) {
 			return $.instance.toggleLeftWindow();
 		}
 	};
 
-	$.closeRightWindow = function () {
+	$.closeRightWindow = function() {
 		if ($.instance.isRightWindowOpen()) {
 			return $.instance.toggleRightWindow();
 		}
 	};
 
-	$.openLeftWindow = function () {
+	$.openLeftWindow = function() {
 		if (!$.instance.isLeftWindowOpen()) {
 			return $.instance.toggleLeftWindow();
 		}
 	};
 
-	$.openRightWindow = function () {
+	$.openRightWindow = function() {
 		if (!$.instance.isRightWindowOpen()) {
 			return $.instance.toggleRightWindow();
 		}
 	};
 
-	$.replaceCenterView = function (view) {
+	$.replaceCenterView = function(view) {
 		return $.instance.setCenterView(view);
 	};
 
@@ -246,23 +204,23 @@ if (mod === 'dk.napp.drawer') {
 
 } else {
 
-	$.open = function (params) {
+	$.open = function(params) {
 		return $.window.open(params);
 	};
 
-	$.close = function (params) {
+	$.close = function(params) {
 		return $.window.close(params);
 	};
 
-	$.isAnyWindowOpen = function () {
+	$.isAnyWindowOpen = function() {
 		return $.instance.getIsLeftDrawerOpen() || $.instance.getIsRightDrawerOpen();
 	};
 
-	$.isLeftWindowOpen = function () {
+	$.isLeftWindowOpen = function() {
 		return $.instance.getIsLeftDrawerOpen();
 	};
 
-	$.isRightWindowOpen = function () {
+	$.isRightWindowOpen = function() {
 		return $.instance.getIsRightDrawerOpen();
 	};
 
@@ -289,18 +247,22 @@ if (mod === 'dk.napp.drawer') {
 	$.hamburgerIconColor = $.drawerArrowIconColor;
 	$.setHamburgerIconColor = $.setDrawerArrowIconColor;
 	$.getHamburgerIconColor = $.getDrawerArrowIconColor;
+
+	$.getWindow = function() {
+		return $.window;
+	};
 }
 
 // events
-$.on = function (event, callback, context) {
+$.on = function(event, callback, context) {
 	return $.instance.addEventListener(event, callback);
 };
 
-$.off = function (event, callback, context) {
+$.off = function(event, callback, context) {
 	return $.instance.removeEventListener(event, callback);
 };
 
-$.trigger = function (event, args) {
+$.trigger = function(event, args) {
 	return $.instance.fireEvent(event, args);
 };
 
@@ -311,36 +273,18 @@ $.fireEvent = $.trigger;
 var methods;
 
 if (mod === 'dk.napp.drawer') {
-	methods = [
-		'toggleLeftWindow',
-		'toggleRightWindow',
-		'bounceLeftWindow',
-		'bounceRightWindow',
-		'isAnyWindowOpen',
-		'isLeftWindowOpen',
-		'isRightWindowOpen',
-		'open',
-		'close'
-	];
+	methods = ['toggleLeftWindow', 'toggleRightWindow', 'bounceLeftWindow', 'bounceRightWindow', 'isAnyWindowOpen', 'isLeftWindowOpen', 'isRightWindowOpen', 'open', 'close'];
 } else {
-	methods = [
-		'replaceCenterView',
-		'toggleLeftWindow',
-		'openLeftWindow',
-		'closeLeftWindow',
-		'toggleRightWindow',
-		'openRightWindow',
-		'closeRightWindow'
-	];
+	methods = ['replaceCenterView', 'toggleLeftWindow', 'openLeftWindow', 'closeLeftWindow', 'toggleRightWindow', 'openRightWindow', 'closeRightWindow'];
 }
 
 // exporse other methods
-_.each(methods, function (fn) {
+_.each(methods, function(fn) {
 
 	if (!$[fn]) {
 
 		// we need wrapper function for Android
-		$[fn] = OS_IOS ? $.instance[fn] : function (a, b) {
+		$[fn] = OS_IOS ? $.instance[fn] : function(a, b) {
 			return $.instance[fn](a, b);
 		};
 	}
